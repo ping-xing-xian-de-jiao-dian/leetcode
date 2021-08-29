@@ -7,7 +7,6 @@ private:
 
 public:
     void sentence(string s, set<string> wordSet, int pos, int pre){
-        // if (len - pos + 1 < miniLen - 1) return;
         if (pos == len){
             string ans = s;
             int flag = 1;
@@ -39,8 +38,6 @@ public:
     vector<string> wordBreak(string s, vector<string>& wordDict) {
         set<string> wordSet(wordDict.begin(), wordDict.end());
         len = s.length();
-        miniLen = INT_MAX;
-        for (string word : wordDict) miniLen = fmin(miniLen, word.length());
         sentence(s, wordSet, 0, -1);
         return res;
     }
