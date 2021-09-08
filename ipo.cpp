@@ -4,7 +4,9 @@ public:
         size_t len = profits.size();
         int sum = w;
         // pro, cap优先队列
-        vector<priority_queue<int, vector<int>, greater<int>>> nums(10001, priority_queue<int, vector<int>, greater<int>>());
+        int maxi = - 1;
+        for (int profit : profits) maxi = max(maxi, profit);
+        vector<priority_queue<int, vector<int>, greater<int>>> nums(maxi + 1, priority_queue<int, vector<int>, greater<int>>());
         // 初始化
         for (int i = 0; i < len; ++i){
             nums[profits[i]].push(capital[i]);
@@ -12,7 +14,7 @@ public:
         while (k){
             int i;
             // 枚举pro
-            for (i = 10000; i >= 0; --i){
+            for (i = maxi; i >= 0; --i){
                 if (!nums[i].empty() && nums[i].top() <= sum){
                     break;
                 }
