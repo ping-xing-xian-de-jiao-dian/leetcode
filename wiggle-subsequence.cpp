@@ -16,3 +16,29 @@ public:
         return maxi;
     }
 };
+
+
+class Solution {
+public:
+    int wiggleMaxLength(vector<int>& nums) {
+        size_t len = nums.size();
+        stack<int> s;
+        s.push(nums[0]);
+        int flag = 1;
+        for (int num : nums){
+            int t = s.top();
+            if (num == t) continue;
+            if (s.size() == 1){
+                s.push(num);
+                flag = num > t ? 0 : 1;
+            } else if (num > t) {
+                if (flag) s.push(num), flag = 0;
+                else s.pop(), s.push(num);
+            } else {
+                if (!flag) s.push(num), flag = 1;
+                else s.pop(), s.push(num);
+            }
+        }
+        return s.size();
+    }
+};
