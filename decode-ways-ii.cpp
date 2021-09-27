@@ -14,7 +14,6 @@ public:
 
         for (int i = 2; i <= len; ++i){
             if (s[i - 1] == '*'){
-                if (i < len && s[i] == '0') continue; 
                 if (s[i - 2] == '*') dp[i] = dp[i - 1] * 9 % MOD + dp[i - 2] * 15 % MOD;
                 else if (s[i - 2] == '1') dp[i] = dp[i - 1] * 9 % MOD + dp[i - 2] * 9 % MOD;
                 else if (s[i - 2] == '2') dp[i] = dp[i - 1] * 9 % MOD + dp[i - 2] * 6 % MOD;
