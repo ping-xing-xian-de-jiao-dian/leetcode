@@ -16,3 +16,18 @@ public:
         return -1;
     }
 };
+
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int le = 0, ri = 0;
+        size_t len = nums.size();
+        for (int i = 1; i < len; ++i) ri += nums[i];
+        for (int i = 0; i < len - 1; ++i){
+            if (le == ri) return i;
+            le += nums[i]; ri -= nums[i + 1];
+        }
+        if (le == 0) return len - 1;
+        return -1;
+    }
+};
